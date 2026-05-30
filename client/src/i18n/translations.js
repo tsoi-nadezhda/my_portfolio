@@ -1,0 +1,458 @@
+export const translations = {
+  en: {
+    meta: { title: 'Portfolio — Developer' },
+    lang: { switchTo: 'RU', aria: 'Switch to Russian' },
+    header: { logo: 'Portfolio', menu: 'Menu' },
+    nav: [
+      { id: 'about', label: 'About me' },
+      { id: 'workflow', label: 'How I work' },
+      { id: 'projects', label: 'Projects' },
+      { id: 'contact', label: 'Contact' },
+    ],
+    hero: {
+      eyebrow: 'Developer portfolio',
+      ctaContact: 'Get in touch',
+      ctaProjects: 'View projects',
+    },
+    profile: {
+      name: 'Nadezhda Tsoi',
+      role: 'Full Stack Developer',
+      tagline: 'I create clear interfaces and reliable web applications',
+      about:
+        'Developer focused on quality UI, readable code, and predictable delivery. I work both in a team and independently - from prototype to production.',
+      experience: [
+        {
+          period: '2024 — 2025',
+          title: 'Full Stack Developer at Feelter',
+          detail:
+            'Developed and maintained web applications and services using React, TypeScript, and Node.js. Integrated REST APIs, implemented backend endpoints for hotel statistics and data aggregation, developed social media scraping tools, improved system reliability through testing and debugging, and collaborated directly with customers to resolve issues and deliver requested improvements.',
+        },
+        {
+          period: '2017 — 2018',
+          title: 'Programmer 1C',
+          detail:
+            'Developed and customized accounting and staff management systems, implemented new functionality, created reports and forms, and maintained existing business applications.',
+        },
+      ],
+      education: [
+        {
+          period: '2021 — 2022',
+          title: 'Full Stack Developer Course at Tel-Ran',
+          detail:
+            'Intensive training in modern web development, including React, Java, JavaScript, TypeScript, databases, and REST APIs.',
+        },
+        {
+          period: '2020 — 2021',
+          title: 'Full Stack Developer Course at Coursera',
+          detail:
+            'Completed online courses in web development, JavaScript, React, Node.js, and modern frontend technologies.',
+        },
+        {
+          period: '2013 — 2017',
+          title: 'Don State Technical University',
+          detail: 'Bachelor of Applied Informatics.',
+        },
+      ],
+      directions: ['Frontend development with React', 'Backend development with Node.js'],
+    },
+    about: {
+      title: 'About me',
+      stack: 'Stack',
+      experience: 'Experience',
+      education: 'Education',
+      directions: 'Directions',
+    },
+    workflow: {
+      title: 'How I work',
+      approachTitle: 'Approach to tasks',
+      aiTitle: 'AI in my workflow',
+      approach: [
+        'I clarify the goal and readiness criteria before starting development',
+        'I break tasks into small iterations with verifiable results',
+        'I write maintainable code with clear structure, typing, and linters',
+        'I test different devices, scenarios, and edge cases',
+      ],
+      aiUsage: [
+        'I use AI to speed up routine tasks: templates, refactoring, and documentation',
+        'I manually review generated code for security, project style, and edge cases',
+        'I do not delegate architectural decisions to AI without my own analysis',
+        'I fix AI-assisted code during PR review when needed',
+      ],
+    },
+    projects: {
+      title: 'Projects & experience',
+      lead: 'Real and educational projects — with a focus on what I did personally.',
+      contribution: 'My contribution',
+      items: [
+        {
+          id: 'college',
+          title: 'College management system',
+          type: 'Educational project',
+          description: 'System for managing students, courses, and teachers.',
+          personal: [
+            'Application architecture',
+            'Layout and React components',
+            'REST API integration',
+            'Testing and debugging',
+            'Loading and error handling',
+          ],
+        },
+        {
+          id: 'dashboard',
+          title: 'Dashboard',
+          type: 'Work project',
+          description: 'Dashboard with graphs and tables.',
+          personal: [
+            'React components development',
+            'Charts, tables and filters implementation',
+            'Loading and error handling',
+          ],
+        },
+        {
+          id: 'moderation',
+          title: 'Moderation console',
+          type: 'Work project',
+          description: 'Console for managing and reviewing UGC content.',
+          personal: [
+            'Application architecture',
+            'React components development',
+            'REST API integration',
+            'Filters and tables implementation',
+            'Pagination',
+            'Loading and error handling',
+          ],
+        },
+        {
+          id: 'carousel',
+          title: 'Image and video carousel',
+          type: 'Work project',
+          description: 'Carousel for reviewing UGC content.',
+          personal: [
+            'Custom carousel implementation',
+            'Shadow DOM development',
+            'Media rendering and navigation',
+            'Loading and error handling',
+          ],
+        },
+        {
+          id: 'scrapers',
+          title: 'Scrapers system',
+          type: 'Work project',
+          description: 'System for scraping social media posts and comments.',
+          personal: ['Development of web scrapers', 'Data extraction and processing', 'Automation scripts'],
+        },
+        {
+          id: 'hotels',
+          title: 'Hotels statistics API',
+          type: 'Work project',
+          description: 'Backend service for hotel statistics and data aggregation.',
+          personal: [
+            'Developed and maintained REST API endpoints',
+            'Implemented data aggregation logic',
+            'Processed and transformed data',
+            'Testing and debugging',
+          ],
+        },
+      ],
+      tech: {
+        college: ['React', 'Redux', 'TypeScript', 'CSS', 'Fetch API', 'Java', 'Spring Boot'],
+        dashboard: ['React', 'TypeScript', 'Chart.js', 'Blueprint UI'],
+        moderation: ['React', 'Redux', 'TypeScript', 'Blueprint UI'],
+        carousel: ['JavaScript', 'HTML', 'CSS', 'Shadow DOM'],
+        scrapers: ['Node.js', 'Express', 'Puppeteer', 'Cheerio'],
+        hotels: ['Node.js', 'TypeScript', 'Express'],
+      },
+    },
+    contact: {
+      title: 'Contact',
+      lead: 'Use the form below — I will receive your message, and you will get a copy by email.',
+      email: 'Email',
+      phone: 'Phone',
+      phoneDisplay: '+972 58-553-3187',
+      telegram: 'Telegram',
+      telegramLink: 'Message on Telegram',
+      github: 'GitHub',
+      githubLink: 'GitHub profile',
+    },
+    form: {
+      name: 'Name',
+      phone: 'Phone',
+      email: 'Email',
+      comment: 'Comment',
+      namePlaceholder: 'How should I address you?',
+      phonePlaceholder: '+972 00-000-0000',
+      emailPlaceholder: 'you@example.com',
+      commentPlaceholder: 'Briefly describe the role or how you would like to get in touch',
+      send: 'Send',
+      sending: 'Sending…',
+      failed: 'Failed to send',
+      serverUnavailable: 'Server unavailable. Start the backend or try again later.',
+    },
+    footer: { text: 'Built with React + Vite.' },
+    ai: {
+      open: 'Ask AI about me',
+      close: 'Close',
+      title: 'Portfolio assistant',
+      subtitle: 'Ask about skills, experience, or how to hire me',
+      placeholder: 'e.g. What is your React experience?',
+      send: 'Send',
+      thinking: 'Thinking…',
+      you: 'You',
+      assistant: 'Assistant',
+      welcome:
+        'Hi! I can answer questions about Nadezhda\'s stack, projects, and experience. Try a suggestion below or ask your own.',
+      suggestions: [
+        'What is your main tech stack?',
+        'Tell me about your work at Feelter',
+        'How can I contact you about a job?',
+      ],
+      notConfigured: 'AI is not configured yet. Add OPENAI_API_KEY to the server .env file.',
+      unavailable: 'AI is temporarily unavailable. Please use the contact form.',
+      errorShort: 'Message is too short',
+    },
+    apiMessages: {
+      'Please check the form fields': 'Please check the form fields',
+      'AI assistant is not configured on the server.': 'AI is not configured yet. Add OPENAI_API_KEY to the server .env file.',
+      'AI assistant is temporarily unavailable. Please try again or use the contact form.':
+        'AI is temporarily unavailable. Please use the contact form.',
+      'Email service is not configured. Please contact the site owner directly.':
+        'Email service is not configured. Please contact the site owner directly.',
+      'Message sent. A copy will be delivered to your email.':
+        'Message sent. A copy will be delivered to your email.',
+      'Failed to send the message. Please try again later or contact us directly.':
+        'Failed to send the message. Please try again later or contact us directly.',
+      'Please enter your name (at least 2 characters)': 'Please enter your name (at least 2 characters)',
+      'Please enter a valid phone number': 'Please enter a valid phone number',
+      'Please enter a valid email address': 'Please enter a valid email address',
+      'Comment must be at least 10 characters': 'Comment must be at least 10 characters',
+    },
+  },
+  ru: {
+    meta: { title: 'Портфолио — разработчик' },
+    lang: { switchTo: 'EN', aria: 'Переключить на английский' },
+    header: { logo: 'Портфолио', menu: 'Меню' },
+    nav: [
+      { id: 'about', label: 'Обо мне' },
+      { id: 'workflow', label: 'Как работаю' },
+      { id: 'projects', label: 'Проекты' },
+      { id: 'contact', label: 'Контакты' },
+    ],
+    hero: {
+      eyebrow: 'Портфолио разработчика',
+      ctaContact: 'Связаться',
+      ctaProjects: 'Смотреть проекты',
+    },
+    profile: {
+      name: 'Надежда Цой',
+      role: 'Full Stack разработчик',
+      tagline: 'Создаю понятные интерфейсы и надёжные веб-приложения',
+      about:
+        'Разработчик с фокусом на качественный UI, читаемый код и предсказуемую доставку. Работаю в команде и самостоятельно — от прототипа до продакшена.',
+      experience: [
+        {
+          period: '2024 — 2025',
+          title: 'Full Stack разработчик в Feelter',
+          detail:
+            'Разработка и поддержка веб-приложений и сервисов на React, TypeScript и Node.js. Интеграция REST API, бэкенд для статистики отелей и агрегации данных, скраперы соцсетей, тестирование и отладка, работа с заказчиками по улучшениям и исправлениям.',
+        },
+        {
+          period: '2017 — 2018',
+          title: 'Программист 1С',
+          detail:
+            'Разработка и доработка учётных и кадровых систем, новый функционал, отчёты и формы, сопровождение бизнес-приложений.',
+        },
+      ],
+      education: [
+        {
+          period: '2021 — 2022',
+          title: 'Курс Full Stack Developer в Tel-Ran',
+          detail:
+            'Интенсив по современной веб-разработке: React, Java, JavaScript, TypeScript, БД и REST API.',
+        },
+        {
+          period: '2020 — 2021',
+          title: 'Курс Full Stack Developer на Coursera',
+          detail:
+            'Онлайн-курсы по веб-разработке, JavaScript, React, Node.js и современному фронтенду.',
+        },
+        {
+          period: '2013 — 2017',
+          title: 'Донской государственный технический университет',
+          detail: 'Бакалавр прикладной информатики.',
+        },
+      ],
+      directions: ['Frontend-разработка на React', 'Backend-разработка на Node.js'],
+    },
+    about: {
+      title: 'Обо мне',
+      stack: 'Стек',
+      experience: 'Опыт',
+      education: 'Образование',
+      directions: 'Направления',
+    },
+    workflow: {
+      title: 'Как я работаю',
+      approachTitle: 'Подход к задачам',
+      aiTitle: 'AI в работе',
+      approach: [
+        'Уточняю цель и критерии готовности до начала разработки',
+        'Декомпозирую задачу на небольшие итерации с проверяемым результатом',
+        'Пишу поддерживаемый код: структура, типизация, линтеры',
+        'Проверяю на разных устройствах, сценариях и граничных случаях',
+      ],
+      aiUsage: [
+        'Использую AI для ускорения рутины: шаблоны, рефакторинг, документация',
+        'Вручную проверяю сгенерированный код: безопасность, стиль проекта, edge cases',
+        'Не делегирую архитектурные решения AI без собственного анализа',
+        'Исправляю AI-код на этапе code review при необходимости',
+      ],
+    },
+    projects: {
+      title: 'Проекты и опыт',
+      lead: 'Реальные и учебные проекты — с акцентом на личный вклад.',
+      contribution: 'Мой вклад',
+      items: [
+        {
+          id: 'college',
+          title: 'Система управления колледжем',
+          type: 'Учебный проект',
+          description: 'Система для управления студентами, курсами и преподавателями.',
+          personal: [
+            'Архитектура приложения',
+            'Вёрстка и React-компоненты',
+            'Интеграция REST API',
+            'Тестирование и отладка',
+            'Обработка загрузки и ошибок',
+          ],
+        },
+        {
+          id: 'dashboard',
+          title: 'Дашборд',
+          type: 'Рабочий проект',
+          description: 'Панель с графиками и таблицами.',
+          personal: [
+            'Разработка React-компонентов',
+            'Графики, таблицы и фильтры',
+            'Обработка загрузки и ошибок',
+          ],
+        },
+        {
+          id: 'moderation',
+          title: 'Консоль модерации',
+          type: 'Рабочий проект',
+          description: 'Консоль для управления и проверки UGC-контента.',
+          personal: [
+            'Архитектура приложения',
+            'Разработка React-компонентов',
+            'Интеграция REST API',
+            'Фильтры и таблицы',
+            'Пагинация',
+            'Обработка загрузки и ошибок',
+          ],
+        },
+        {
+          id: 'carousel',
+          title: 'Карусель изображений и видео',
+          type: 'Рабочий проект',
+          description: 'Карусель для просмотра UGC-контента.',
+          personal: [
+            'Собственная реализация карусели',
+            'Разработка Shadow DOM',
+            'Отображение медиа и навигация',
+            'Обработка загрузки и ошибок',
+          ],
+        },
+        {
+          id: 'scrapers',
+          title: 'Система скраперов',
+          type: 'Рабочий проект',
+          description: 'Система для сбора постов и комментариев из соцсетей.',
+          personal: ['Разработка веб-скраперов', 'Извлечение и обработка данных', 'Скрипты автоматизации'],
+        },
+        {
+          id: 'hotels',
+          title: 'API статистики отелей',
+          type: 'Рабочий проект',
+          description: 'Backend-сервис статистики отелей и агрегации данных.',
+          personal: [
+            'Разработка и поддержка REST API',
+            'Логика агрегации данных',
+            'Обработка и преобразование данных',
+            'Тестирование и отладка',
+          ],
+        },
+      ],
+      tech: {
+        college: ['React', 'Redux', 'TypeScript', 'CSS', 'Fetch API', 'Java', 'Spring Boot'],
+        dashboard: ['React', 'TypeScript', 'Chart.js', 'Blueprint UI'],
+        moderation: ['React', 'Redux', 'TypeScript', 'Blueprint UI'],
+        carousel: ['JavaScript', 'HTML', 'CSS', 'Shadow DOM'],
+        scrapers: ['Node.js', 'Express', 'Puppeteer', 'Cheerio'],
+        hotels: ['Node.js', 'TypeScript', 'Express'],
+      },
+    },
+    contact: {
+      title: 'Контакты',
+      lead: 'Форма ниже — сообщение придёт мне, вам уйдёт копия на email.',
+      email: 'Email',
+      phone: 'Телефон',
+      phoneDisplay: '+972 (58) 553-31-87',
+      telegram: 'Telegram',
+      telegramLink: 'Написать в Telegram',
+      github: 'GitHub',
+      githubLink: 'Профиль на GitHub',
+    },
+    form: {
+      name: 'Имя',
+      phone: 'Телефон',
+      email: 'Email',
+      comment: 'Комментарий',
+      namePlaceholder: 'Как к вам обращаться?',
+      phonePlaceholder: '+7 (900) 123-45-67',
+      emailPlaceholder: 'you@example.com',
+      commentPlaceholder: 'Кратко опишите вакансию или как с вами связаться',
+      send: 'Отправить',
+      sending: 'Отправка…',
+      failed: 'Не удалось отправить',
+      serverUnavailable: 'Сервер недоступен. Запустите backend или попробуйте позже.',
+    },
+    footer: { text: 'Сделано на React + Vite.' },
+    ai: {
+      open: 'Спросить AI обо мне',
+      close: 'Закрыть',
+      title: 'AI-ассистент портфолио',
+      subtitle: 'Спросите о навыках, опыте или сотрудничестве',
+      placeholder: 'например: Какой у вас опыт с React?',
+      send: 'Отправить',
+      thinking: 'Думаю…',
+      you: 'Вы',
+      assistant: 'Ассистент',
+      welcome:
+        'Привет! Отвечу на вопросы о стеке, проектах и опыте Надежды. Выберите подсказку ниже или задайте свой вопрос.',
+      suggestions: [
+        'Какой у вас основной стек?',
+        'Расскажите об опыте в Feelter',
+        'Как связаться по поводу вакансии?',
+      ],
+      notConfigured: 'AI не настроен. Добавьте OPENAI_API_KEY в server/.env',
+      unavailable: 'AI временно недоступен. Используйте форму контактов.',
+      errorShort: 'Сообщение слишком короткое',
+    },
+    apiMessages: {
+      'Please check the form fields': 'Проверьте заполнение полей формы',
+      'AI assistant is not configured on the server.': 'AI не настроен. Добавьте OPENAI_API_KEY в server/.env',
+      'AI assistant is temporarily unavailable. Please try again or use the contact form.':
+        'AI временно недоступен. Используйте форму контактов.',
+      'Email service is not configured. Please contact the site owner directly.':
+        'Сервис почты не настроен. Свяжитесь с владельцем сайта напрямую.',
+      'Message sent. A copy will be delivered to your email.':
+        'Сообщение отправлено. Копия придёт на ваш email.',
+      'Failed to send the message. Please try again later or contact us directly.':
+        'Не удалось отправить сообщение. Попробуйте позже или напишите напрямую.',
+      'Please enter your name (at least 2 characters)': 'Укажите имя (минимум 2 символа)',
+      'Please enter a valid phone number': 'Укажите корректный телефон',
+      'Please enter a valid email address': 'Укажите корректный email',
+      'Comment must be at least 10 characters': 'Комментарий должен быть не короче 10 символов',
+    },
+  },
+};
