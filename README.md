@@ -60,7 +60,32 @@ Endpoint: `POST /api/chat` with `{ "message": "...", "lang": "en"|"ru", "history
 
 ## Content
 
-Edit `client/src/data/portfolio.js` — name, stack, projects, contacts.
+Edit `client/src/i18n/translations.js` and `client/src/data/shared.js`.
+
+## Production (Vercel + Render)
+
+| Service | URL |
+|---------|-----|
+| Frontend | Vercel (`client/` as root directory) |
+| Backend | https://my-portfolio-fn83.onrender.com |
+
+### Vercel — Environment Variables
+
+```
+VITE_API_URL=https://my-portfolio-fn83.onrender.com
+```
+
+Redeploy after adding/changing (Vite bakes env at build time).
+
+### Render — Environment Variables
+
+Set SMTP, `OWNER_EMAIL`, `OPENAI_API_KEY`, plus:
+
+```
+CLIENT_ORIGIN_PATTERNS=^https://my-portfolio.*\.vercel\.app$
+```
+
+This allows all Vercel preview URLs (`my-portfolio-xxxxx.vercel.app`) without updating after each deploy.
 
 ## Build
 
@@ -68,4 +93,4 @@ Edit `client/src/data/portfolio.js` — name, stack, projects, contacts.
 cd client && npm run build
 ```
 
-For production, deploy `client/dist` and the API server; set `CLIENT_ORIGIN` in the server `.env`.
+For local production testing, deploy `client/dist` and the API server.

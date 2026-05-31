@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { apiUrl } from '../config/api';
 import { useLanguage } from '../context/LanguageContext';
 
 const initialForm = { name: '', phone: '', email: '', comment: '' };
@@ -34,7 +35,7 @@ export default function ContactForm() {
     setFieldErrors({});
 
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch(apiUrl('/api/contact'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...form, lang }),

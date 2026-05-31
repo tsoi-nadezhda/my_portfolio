@@ -5,6 +5,7 @@ import express from 'express';
 import cors from 'cors';
 import nodemailer from 'nodemailer';
 import { askPortfolioAssistant, validateChatBody } from './ai/chat.js';
+import { corsOptions } from './cors.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: join(__dirname, '.env') });
@@ -20,7 +21,7 @@ if (missingEnv.length > 0) {
   );
 }
 
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173' }));
+app.use(cors(corsOptions));
 app.use(express.json({ limit: '32kb' }));
 
 function createTransporter() {

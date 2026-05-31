@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { apiUrl } from '../config/api';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function AiAssistant() {
@@ -41,7 +42,7 @@ export default function AiAssistant() {
       .slice(-8);
 
     try {
-      const res = await fetch('/api/chat', {
+      const res = await fetch(apiUrl('/api/chat'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message, lang, history }),
