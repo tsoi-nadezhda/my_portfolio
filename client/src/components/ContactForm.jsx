@@ -34,6 +34,26 @@ export default function ContactForm() {
     setMessage('');
     setFieldErrors({});
 
+    const clientErrors = {};
+    if (!form.name.trim() || form.name.trim().length < 2) {
+      clientErrors.name = translateApi('Please enter your name (at least 2 characters)');
+    }
+    if (!form.phone.trim() || form.phone.trim().length < 6) {
+      clientErrors.phone = translateApi('Please enter a valid phone number');
+    }
+    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+      clientErrors.email = translateApi('Please enter a valid email address');
+    }
+    if (!form.comment.trim() || form.comment.trim().length < 10) {
+      clientErrors.comment = translateApi('Comment must be at least 10 characters');
+    }
+    if (Object.keys(clientErrors).length > 0) {
+      setStatus('error');
+      setMessage(translateApi('Please check the form fields'));
+      setFieldErrors(clientErrors);
+      return;
+    }
+
     try {
       const res = await fetch(apiUrl('/api/contact'), {
         method: 'POST',
@@ -72,6 +92,8 @@ export default function ContactForm() {
           placeholder={f.namePlaceholder}
           disabled={status === 'loading'}
           aria-invalid={!!fieldErrors.name}
+          minLength={2}
+          required
         />
         {fieldErrors.name && <span className="field-error">{fieldErrors.name}</span>}
       </div>
@@ -87,6 +109,8 @@ export default function ContactForm() {
           placeholder={f.phonePlaceholder}
           disabled={status === 'loading'}
           aria-invalid={!!fieldErrors.phone}
+          minLength={6}
+          required
         />
         {fieldErrors.phone && <span className="field-error">{fieldErrors.phone}</span>}
       </div>
@@ -102,6 +126,7 @@ export default function ContactForm() {
           placeholder={f.emailPlaceholder}
           disabled={status === 'loading'}
           aria-invalid={!!fieldErrors.email}
+          required
         />
         {fieldErrors.email && <span className="field-error">{fieldErrors.email}</span>}
       </div>
@@ -117,6 +142,8 @@ export default function ContactForm() {
           placeholder={f.commentPlaceholder}
           disabled={status === 'loading'}
           aria-invalid={!!fieldErrors.comment}
+          minLength={10}
+          required
         />
         {fieldErrors.comment && <span className="field-error">{fieldErrors.comment}</span>}
       </div>

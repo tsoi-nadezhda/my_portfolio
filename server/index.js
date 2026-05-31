@@ -69,6 +69,13 @@ app.get('/api/health', (_req, res) => {
   res.json({ ok: true, ai: Boolean(process.env.OPENAI_API_KEY) });
 });
 
+app.get('/api/contact', (_req, res) => {
+  res.json({
+    ok: true,
+    message: 'Contact API is running. Send POST with JSON: name, phone, email, comment (min 10 chars).',
+  });
+});
+
 app.post('/api/chat', async (req, res) => {
   const validation = validateChatBody(req.body);
 
