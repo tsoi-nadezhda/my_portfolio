@@ -3,7 +3,7 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import express from 'express';
 import cors from 'cors';
-import Brevo from '@getbrevo/brevo';
+import { BrevoClient } from '@getbrevo/brevo';
 
 import { askPortfolioAssistant, validateChatBody } from './ai/chat.js';
 import { corsOptions } from './cors.js';
@@ -27,14 +27,9 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: '32kb' }));
 
 function createBrevoClient() {
-  const apiInstance = new Brevo.TransactionalEmailsApi();
-
-  apiInstance.setApiKey(
-    Brevo.TransactionalEmailsApiApiKeys.apiKey,
-    process.env.BREVO_API_KEY,
-  );
-
-  return apiInstance;
+  return new BrevoClient({
+    apiKey: process.env.BREVO_API_KEY,
+  });
 }
 
 function validateContact(body) {
@@ -155,7 +150,7 @@ app.post('/api/contact', async (req, res) => {
   try {
     const brevo = createBrevoClient();
 
-    await brevo.sendTransacEmail({
+    await brevo.transactionalEmails.sendTransacEmail({
       sender: {
         email: from,
         name: siteName,
