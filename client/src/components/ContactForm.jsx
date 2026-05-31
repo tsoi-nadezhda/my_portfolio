@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { apiUrl } from '../config/api';
 import { useLanguage } from '../context/LanguageContext';
 
 const initialForm = { name: '', phone: '', email: '', comment: '' };
-
+const apiUrl =process.env.VITE_API_URL
 export default function ContactForm() {
   const { t, lang } = useLanguage();
   const { form: f, apiMessages } = t;
