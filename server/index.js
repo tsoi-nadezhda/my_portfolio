@@ -3,16 +3,18 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import express from 'express';
 import cors from 'cors';
-import nodemailer from 'nodemailer';
+import Brevo from '@getbrevo/brevo';
+
 import { askPortfolioAssistant, validateChatBody } from './ai/chat.js';
 import { corsOptions } from './cors.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: join(__dirname, '.env') });
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const requiredEnv = ['SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASS', 'OWNER_EMAIL'];
+const requiredEnv = ['BREVO_API_KEY', 'OWNER_EMAIL', 'MAIL_FROM'];
 const missingEnv = requiredEnv.filter((key) => !process.env[key]);
 
 if (missingEnv.length > 0) {
@@ -24,16 +26,15 @@ if (missingEnv.length > 0) {
 app.use(cors(corsOptions));
 app.use(express.json({ limit: '32kb' }));
 
-function createTransporter() {
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT),
-    secure: process.env.SMTP_SECURE === 'true',
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
+function createBrevoClient() {
+  const apiInstance = new Brevo.TransactionalEmailsApi();
+
+  apiInstance.setApiKey(
+    Brevo.TransactionalEmailsApiApiKeys.apiKey,
+    process.env.BREVO_API_KEY,
+  );
+
+  return apiInstance;
 }
 
 function validateContact(body) {
@@ -43,12 +44,15 @@ function validateContact(body) {
   if (!name || typeof name !== 'string' || name.trim().length < 2) {
     errors.name = 'Please enter your name (at least 2 characters)';
   }
+
   if (!phone || typeof phone !== 'string' || phone.trim().length < 6) {
     errors.phone = 'Please enter a valid phone number';
   }
+
   if (!email || typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
     errors.email = 'Please enter a valid email address';
   }
+
   if (!comment || typeof comment !== 'string' || comment.trim().length < 10) {
     errors.comment = 'Comment must be at least 10 characters';
   }
@@ -72,7 +76,7 @@ app.get('/api/health', (_req, res) => {
 app.get('/api/contact', (_req, res) => {
   res.json({
     ok: true,
-    message: 'Contact API is running. Send POST with JSON: name, phone, email, comment (min 10 chars).',
+    message: 'Contact API is running. Send POST with JSON: name, phone, email, comment.',
   });
 });
 
@@ -93,7 +97,9 @@ app.post('/api/chat', async (req, res) => {
         message: 'AI assistant is not configured on the server.',
       });
     }
+
     console.error('AI chat error:', err);
+
     return res.status(500).json({
       success: false,
       message: 'AI assistant is temporarily unavailable. Please try again or use the contact form.',
@@ -119,9 +125,9 @@ app.post('/api/contact', async (req, res) => {
     });
   }
 
-  const from = process.env.MAIL_FROM || process.env.SMTP_USER;
   const ownerEmail = process.env.OWNER_EMAIL;
   const siteName = process.env.SITE_NAME || 'Portfolio';
+  const from = process.env.MAIL_FROM;
 
   const ownerHtml = `
     <h2>New inquiry from the website</h2>
@@ -147,23 +153,40 @@ app.post('/api/contact', async (req, res) => {
   `;
 
   try {
-    const transporter = createTransporter();
+    const brevo = createBrevoClient();
 
-    await transporter.sendMail({
-      from: `"${siteName}" <${from}>`,
-      to: ownerEmail,
-      replyTo: data.email,
+    await brevo.sendTransacEmail({
+      sender: {
+        email: from,
+        name: siteName,
+      },
+      to: [
+        {
+          email: ownerEmail,
+        },
+      ],
+      replyTo: {
+        email: data.email,
+        name: data.name,
+      },
       subject: `[${siteName}] New inquiry from ${data.name}`,
-      html: ownerHtml,
-      text: stripHtml(ownerHtml),
+      htmlContent: ownerHtml,
+      textContent: stripHtml(ownerHtml),
     });
 
-    await transporter.sendMail({
-      from: `"${siteName}" <${from}>`,
-      to: data.email,
+    await brevo.sendTransacEmail({
+      sender: {
+        email: from,
+        name: siteName,
+      },
+      to: [
+        {
+          email: data.email,
+        },
+      ],
       subject: `[${siteName}] Copy of your message`,
-      html: userHtml,
-      text: stripHtml(userHtml),
+      htmlContent: userHtml,
+      textContent: stripHtml(userHtml),
     });
 
     return res.json({
@@ -172,6 +195,7 @@ app.post('/api/contact', async (req, res) => {
     });
   } catch (err) {
     console.error('Contact form error:', err);
+
     return res.status(500).json({
       success: false,
       message: 'Failed to send the message. Please try again later or contact us directly.',

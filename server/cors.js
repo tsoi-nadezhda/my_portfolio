@@ -1,6 +1,6 @@
 const LOCAL_ORIGINS = ['http://localhost:5173', 'http://localhost:4173'];
 
-const explicitOrigins = (process.env.CLIENT_ORIGIN || '')
+const explicitOrigins = (process.env.CLIENT_ORIGIN2 || '')
   .split(',')
   .map((o) => o.trim())
   .filter(Boolean);
