@@ -169,7 +169,7 @@ app.post('/api/contact', async (req, res) => {
       textContent: stripHtml(ownerHtml),
     });
 
-    await brevo.sendTransacEmail({
+    await brevo.transactionalEmails.sendTransacEmail({
       sender: {
         email: from,
         name: siteName,
