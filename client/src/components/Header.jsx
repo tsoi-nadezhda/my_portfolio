@@ -4,7 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 export default function Header() {
   const [open, setOpen] = useState(false);
   const { t, toggleLang, lang } = useLanguage();
-
+console.log(t,"TT")
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setOpen(false);

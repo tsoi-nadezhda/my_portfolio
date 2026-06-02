@@ -588,6 +588,8 @@
 
   .nav--open {
     display: block;
+    position: absolute;
+    top: 60px;
   }
 
   .nav ul {

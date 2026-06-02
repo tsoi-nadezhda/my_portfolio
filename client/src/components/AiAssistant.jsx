@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-const apiUrl =process.env.VITE_API_URL
+const apiUrl =import.meta.env.VITE_API_URL
 
 export default function AiAssistant() {
   const { t, lang } = useLanguage();

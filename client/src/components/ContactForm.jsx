@@ -7,7 +7,6 @@ const apiUrl = import.meta.env.VITE_API_URL;
 export default function ContactForm() {
   const { t, lang } = useLanguage();
   const { form: f, apiMessages } = t;
-  console.log('API URL:', import.meta.env.VITE_API_URL);
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
